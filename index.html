@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aurès Tourism Map FINAL</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial;
+    }
+
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+
+    .leaflet-popup-content {
+      text-align: center;
+    }
+
+    img {
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+
+  // 🟢 MAP
+  var map = L.map('map').setView([35.3, 6.0], 7);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution: 'OpenStreetMap'
+  }).addTo(map);
+
+  var icon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+    iconSize: [30, 30]
+  });
+
+  // ================= BATNA =================
+
+  L.marker([35.5030, 6.3340], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Timgad</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Timgad_ruins.jpg" width="180"><br>
+      مدينة رومانية أثرية 🏛️
+    `);
+
+  L.marker([35.4047, 6.6089], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Ghoufi</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Ghoufi_canyon.jpg" width="180"><br>
+      مناظر طبيعية جميلة 🌄
+    `);
+
+  // ================= BISKRA =================
+
+  L.marker([34.4180, 5.0700], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Tolga Oasis</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Oasis_Biskra.jpg" width="180"><br>
+      واحات النخيل 🌴
+    `);
+
+  L.marker([34.9180, 5.7320], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Ziban Region</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Palm_oasis_Biskra.jpg" width="180"><br>
+      منطقة صحراوية جميلة 🏜️
+    `);
+
+  // ================= KHENCHELA =================
+
+  L.marker([35.6080, 7.2100], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Hammam Essalihine</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Hammam_Essalihine_Khenchela.jpg" width="180"><br>
+      حمام روماني علاجي 🛁
+    `);
+
+  L.marker([35.2510, 6.6890], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Djebel Chelia</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Mountains_Algeria.jpg" width="180"><br>
+      أعلى قمة في الجزائر 🏔️
+    `);
+
+  L.marker([35.2390, 7.1130], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Khemissa Ruins</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Khemissa_ruins.jpg" width="180"><br>
+      آثار رومانية قديمة 🏛️
+    `);
+
+  // ================= CIRCUITS =================
+
+  L.polyline([
+    [35.5030, 6.3340],
+    [35.4047, 6.6089]
+  ], {color:'red', weight:4}).addTo(map);
+
+  L.polyline([
+    [34.4180, 5.0700],
+    [34.9180, 5.7320]
+  ], {color:'green', weight:4}).addTo(map);
+
+  L.polyline([
+    [35.6080, 7.2100],
+    [35.2510, 6.6890],
+    [35.2390, 7.1130]
+  ], {color:'blue', weight:4}).addTo(map);
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
