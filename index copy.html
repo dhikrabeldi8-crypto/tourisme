@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aurès Tourism Final Map</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial;
+    }
+
+    #sidebar {
+      width: 22%;
+      height: 100%;
+      float: left;
+      background: #0f172a;
+      color: white;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    #map {
+      width: 78%;
+      height: 100%;
+      float: right;
+    }
+
+    .title {
+      font-size: 20px;
+      color: #38bdf8;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .btn {
+      background: #1e293b;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: #38bdf8;
+      color: black;
+    }
+
+    .leaflet-popup-content {
+      text-align: center;
+    }
+
+    img {
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="sidebar">
+  <div class="title">🌍 Aurès Final Map</div>
+
+  <div class="btn" onclick="showAll()">🏠 All Circuits</div>
+  <div class="btn" onclick="focusBatna()">Batna</div>
+  <div class="btn" onclick="focusBiskra()">Biskra</div>
+  <div class="btn" onclick="focusKhenchela()">Khenchela</div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+
+  var map = L.map('map').setView([35.3, 6.0], 7);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution: 'OpenStreetMap'
+  }).addTo(map);
+
+  var icon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+    iconSize: [30, 30]
+  });
+
+  // ================= BATNA =================
+  var timgad = L.marker([35.5030, 6.3340], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Timgad</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Timgad_ruins.jpg" width="150"><br>
+      مدينة رومانية أثرية
+    `);
+
+  var ghoufi = L.marker([35.4047, 6.6089], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Ghoufi Canyons</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Ghoufi_canyon.jpg" width="150"><br>
+      مناظر طبيعية ساحرة
+    `);
+
+  // ================= BISKRA =================
+  var tolga = L.marker([34.4180, 5.0700], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Tolga Oasis</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Oasis_Biskra.jpg" width="150"><br>
+      واحات النخيل
+    `);
+
+  var ziban = L.marker([34.9180, 5.7320], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Ziban Region</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Palm_oasis_Biskra.jpg" width="150"><br>
+      منطقة سياحية صحراوية
+    `);
+
+  // ================= KHENCHELA =================
+  var djebel = L.marker([35.3070, 7.0940], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Djebel El Mahmel</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Mountains_Algeria.jpg" width="150"><br>
+      جبال رائعة للتسلق
+    `);
+
+  var khemissa = L.marker([35.2390, 7.1130], {icon: icon}).addTo(map)
+    .bindPopup(`
+      <b>Khemissa Ruins</b><br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Khemissa_ruins.jpg" width="150"><br>
+      آثار رومانية قديمة
+    `);
+
+  // ================= CIRCUITS =================
+
+  var allCircuits = L.layerGroup([
+    timgad, ghoufi, tolga, ziban, djebel, khemissa
+  ]).addTo(map);
+
+  var circuitBatna = L.layerGroup([timgad, ghoufi]);
+  var circuitBiskra = L.layerGroup([tolga, ziban]);
+  var circuitKhenchela = L.layerGroup([djebel, khemissa]);
+
+  // ================= FUNCTIONS =================
+
+  function showAll() {
+    map.setView([35.3, 6.0], 7);
+    map.addLayer(allCircuits);
+  }
+
+  function focusBatna() {
+    map.fitBounds(circuitBatna.getBounds());
+  }
+
+  function focusBiskra() {
+    map.fitBounds(circuitBiskra.getBounds());
+  }
+
+  function focusKhenchela() {
+    map.fitBounds(circuitKhenchela.getBounds());
+  }
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
